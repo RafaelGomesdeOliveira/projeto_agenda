@@ -7,6 +7,8 @@ django-admin startproject 'nome do projeto' .
 
 ```
 
+Configuração do git e do github
+
 ```
 git config --global user.name 'Seu nome'
 git config --global user.email 'seuemail@gmail.com'
@@ -26,6 +28,19 @@ git push o "Nome do Repositório Remoto" (Envia para o github)
 
 git branch -m master main (modificar de master para main)
 
-   
+```
+
+Migração de Dados
 
 ```
+python3 manage.py makemigrations (Criar as migrações)
+python3 manage.py migrate ("Publicar" a migração)
+```
+
+Criando e Editando o Super Usuário
+```
+python3 manage.py createsuperuser
+python3 manage.py changepassword 'Nome do super usuário'
+```
+
+
