@@ -21,8 +21,11 @@ git log
 ssh-keygen -f ~/.ssh/rafaelGomes_rsa -t rsa -b 4096
 cat ~/rafaelGomes_rsa.pub
 Agora copia e cola no ssh keys do github
-git remote add "nome" git@github.com:RafaelGomesdeOliveira/PROJETO_AGENDA.git (Adicionar um repositório remoto que o associa a repositório PROJETO_AGENDA)
-git push origem "nome" (Envia para o github)
+git remote add "Nome do Repositório Remoto" git@github.com:RafaelGomesdeOliveira/PROJETO_AGENDA.git (Adicionar um repositório remoto que o associa a repositório PROJETO_AGENDA)
+git push o "Nome do Repositório Remoto" (Envia para o github)
 
+git branch -m master main (modificar de master para main)
+
+   
 
 ```
