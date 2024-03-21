@@ -40,7 +40,7 @@ python3 manage.py migrate ("Publicar" a migração)
 Criando e Editando o Super Usuário
 ```
 python3 manage.py createsuperuser
-python3 manage.py changepassword 'Nome do super usuário'
+python3 manage.py changepassword 'Nome do super usuário' (Recuperar a senha)
 ```
 
 
