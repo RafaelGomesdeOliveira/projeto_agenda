@@ -1,11 +1,17 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 #ID é automático
 
 class Category(models.Model):
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=50)
+
     def __str__(self) -> str:
         return f'{self.name}'
 
@@ -18,6 +24,9 @@ class Contact(models.Model):
     description = models.TextField(blank=True) #Não precisa informar informar a limitação, mas pode informar
     show = models.BooleanField(default=True)
     picture = models.ImageField(blank=True, upload_to='pictures/%Y/%m/') #Se obrigar a ter imagem e conter contatos sem, vai acabar gerando um erro
+
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True) #Uma categoria para vários contatos linkados 
     #CASCADE apaga os contatos quando eu apagar a categoria // SET_NULL seta como nulo quando apago a categoria, mas eu tenho que informar o blank=True e Null = True
     
