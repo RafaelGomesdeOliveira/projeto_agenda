@@ -45,7 +45,7 @@ python3 manage.py changepassword 'Nome do super usuário' (Recuperar a senha)
 ```
 
 
-CRUD MANUAL
+CRUD Manual
 
 ``` python
 >>> from contact.models import Contact
