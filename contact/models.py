@@ -13,7 +13,7 @@ class Category(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self) -> str:
-        return f'{self.name}'
+        return f'{self.name}' #Isso é MUITO importante, isso que será impresso na foreign key do Contact
 
 class Contact(models.Model):
     first_name = models.CharField(max_length=50)
