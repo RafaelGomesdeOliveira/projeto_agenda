@@ -25,7 +25,7 @@ cat ~/rafaelGomes_rsa.pub
 Agora copia e cola no ssh keys do github
 git remote add "Nome do Repositório Remoto" git@github.com:RafaelGomesdeOliveira/PROJETO_AGENDA.git (Adicionar um repositório remoto que o associa a repositório PROJETO_AGENDA, só é feito uma unica vez por projeto)
 
-git push o "Nome do Repositório Remoto" (Envia para o github)
+git push o "Nome do Repositório Remoto" main -u (Envia para o github, o -u é pra setar a main como padrão)
 
 git branch -m master main (modificar de master para main)
 
@@ -45,7 +45,7 @@ python3 manage.py changepassword 'Nome do super usuário' (Recuperar a senha)
 ```
 
 
-CRUD MANUAL
+CRUD Manual
 
 ``` python
 >>> from contact.models import Contact

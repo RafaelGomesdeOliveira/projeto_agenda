@@ -11,7 +11,7 @@ class ContantAdmin(admin.ModelAdmin):
     search_fields = ['id', 'first_name', 'last_name'] # Campos que eu posso buscar
     list_per_page = 10 #Quantidade de usuários por página
     list_max_show_all = 1000 #Só vai mostrar todos se tiver no máximo 1000 usuário
-    list_editable = ['first_name', 'last_name'] # Campos que podem ser editados mais facilmente
+    list_editable = ['first_name', 'last_name', 'show'] # Campos que podem ser editados mais facilmente
     list_display_links = ['id', 'phone'] # Link para acessar a página de edição
 
 @admin.register(models.Category)
