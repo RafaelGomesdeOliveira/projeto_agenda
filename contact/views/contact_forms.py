@@ -3,47 +3,36 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from django import forms
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 from contact.models import Contact
+from contact.forms import ContactForm
 
 
-class ContactForm(forms.ModelForm):
-    class Meta:
-        model = Contact
-        fields = ['first_name', 'last_name', 'phone']
-
-    def clean(self):
-        cleaned_data = self.cleaned_data
-
-        self.add_error(
-            None,
-            ValidationError(
-                'Mensagem de erro',
-                code='Invalid'
-            )
-            )
-        self.add_error(
-            None,
-            ValidationError(
-                'Mensagem de erro 2',
-                code='Invalid'
-            )
-
-        )
-
-        return super().clean()
 
 
 
 app_name = 'contact'
 
 def create(request):
-    
+    form_action = reverse('contact:create')
+
     if request.method == 'POST':
+
+        form = ContactForm(request.POST)
+
         context = {
-            'form': ContactForm(request.POST),
+            'form': form,
             'site_title': 'Create Contact - ',
+            'form_action': form_action,
         }
+
+        if form.is_valid():
+            #contact = form.save(commit=False)
+            contact = form.save()
+            contact.save()
+            
+            return redirect('contact:update', id=contact.id)
 
         return render(
             request,
@@ -60,4 +49,65 @@ def create(request):
         request,
         'contact/create.html',
         context
+    )
+
+
+def update(request, id):
+    contact = get_object_or_404(Contact, id=id, show=True)
+
+    form_action = reverse('contact:update', args=(id,)) #Aqui eu passo os valores dinâmicos da urls
+
+    if request.method == 'POST':
+
+        form = ContactForm(request.POST, instance=contact)
+
+        context = {
+            'form': form,
+            'site_title': 'Create Contact - ',
+            'form_action': form_action,
+        }
+
+        if form.is_valid():
+            #contact = form.save(commit=False)
+            contact = form.save()
+            contact.save()
+            
+            return redirect('contact:update', id=contact.id)
+
+        return render(
+            request,
+            'contact/create.html',
+            context
+        )
+
+    context = {
+        'form': ContactForm(instance=contact),
+        'site_title': 'Create Contact - ',
+    }
+
+    return render(
+        request,
+        'contact/create.html',
+        context
+    )
+
+
+
+def delete(request, id):
+    contact = get_object_or_404(Contact, id=id, show=True)
+
+
+    confirmation = request.POST.get('confirmation', 'no')
+
+    if confirmation == 'yes':
+        contact.delete()
+        return redirect('contact:index')
+
+    return render (
+        request,
+        'contact/contact.html',
+        {
+            'contact': contact,
+            'confirmation': confirmation
+        }
     )
