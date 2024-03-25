@@ -5,7 +5,7 @@ from contact import models
 
 @admin.register(models.Contact)
 class ContantAdmin(admin.ModelAdmin):
-    list_display = ['id', 'first_name', 'last_name', 'phone', 'description', 'show', 'picture'] #Campos que vão aparecer
+    list_display = ['id', 'first_name', 'category','last_name', 'phone', 'description', 'show', 'picture'] #Campos que vão aparecer
     ordering = ['-id'] #Ordem decrecente de exibição
     list_filter = ['created_date'] #Filtro que vai ficar ao lado, criados na ultima semana, no ultimo mês, etc
     search_fields = ['id', 'first_name', 'last_name'] # Campos que eu posso buscar
