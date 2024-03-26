@@ -27,8 +27,13 @@
           {% if field.help_text %}
           <p class="help-text">{{field.help_text}}</p>
           {% endif %}
+          
         </div>
+        {% if field.name == 'picture' and field.value.url %}
+          <img src="{{field.value.url}}" alt="">
+        {% endif %}
       </div>
+
     {% endfor %}
 
       {% if form.non_field_errors %} 
