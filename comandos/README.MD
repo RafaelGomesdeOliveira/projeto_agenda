@@ -10,8 +10,8 @@ django-admin startproject 'nome do projeto' .
 Configuração do git e do github
 
 ```
-git config --global user.name 'Seu nome'
-git config --global user.email 'seuemail@gmail.com'
+git config --global user.name 'Seu nome' --------------- git config --global user.name 'RafaelGomesdeOliveira'
+git config --global user.email 'seuemail@gmail.com' -- git config --global user.email 'rafaelgoliveiraa@gmail.com'
 git config --global init.defaultBranch main
 #Configurar o gitignore (É bom colocar na raiz)
 git init
