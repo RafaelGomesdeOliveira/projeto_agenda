@@ -4,16 +4,18 @@ from django.http import Http404
 from django import forms
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from contact.models import Contact
 from contact.forms import ContactForm
 
 
-
-
-
 app_name = 'contact'
 
+
+
+
+@login_required(login_url='contact:login ')
 def create(request):
     form_action = reverse('contact:create')
 
@@ -29,7 +31,8 @@ def create(request):
 
         if form.is_valid():
             #contact = form.save(commit=False)
-            contact = form.save()
+            contact = form.save(commit=False)
+            contact.owner = request.user
             contact.save()
             
             return redirect('contact:update', id=contact.id)
@@ -51,9 +54,9 @@ def create(request):
         context
     )
 
-
+@login_required(login_url='contact:login ')
 def update(request, id):
-    contact = get_object_or_404(Contact, id=id, show=True)
+    contact = get_object_or_404(Contact, id=id, show=True, owner=request.user)
 
     form_action = reverse('contact:update', args=(id,)) #Aqui eu passo os valores dinâmicos da urls
 
@@ -92,9 +95,9 @@ def update(request, id):
     )
 
 
-
+@login_required(login_url='contact:login ')
 def delete(request, id):
-    contact = get_object_or_404(Contact, id=id, show=True)
+    contact = get_object_or_404(Contact, id=id, show=True, owner=request.user)
 
 
     confirmation = request.POST.get('confirmation', 'no')
