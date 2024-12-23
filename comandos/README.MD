@@ -18,7 +18,10 @@ git init
 git add . [Para adicionar na lista os (arquivos que nesse caso são todos) que vou posteriormente comitar]
 git commit -m 'Mensagem'
 
+pequeno teste
 git log  
+
+
 
 ssh-keygen -f ~/.ssh/rafaelGomes_rsa -t rsa -b 4096
 cat ~/rafaelGomes_rsa.pub

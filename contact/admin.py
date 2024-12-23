@@ -14,6 +14,8 @@ class ContantAdmin(admin.ModelAdmin):
     list_editable = ['first_name', 'last_name', 'show'] # Campos que podem ser editados mais facilmente
     list_display_links = ['id', 'phone'] # Link para acessar a página de edição
 
+
+
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
